@@ -21,7 +21,7 @@ Feature: Gestion des Chefs de Zone
     And the user enters date de naissance "01/01/1996"
     And the user selects sexe 1
     And the user enters phone number "012345678"
-    And the user enters email "jexh5aont@example.com"
+    And the user enters email "jexh5gaont@example.com"
     And the user clicks on address section
     And the user selects governorate 2
     And the user selects ville 3
