@@ -11,7 +11,7 @@ Feature: Gestion des Chefs de Zone
     Then the user should see a successful login message
 
   Scenario: Ajouter un chef de zone avec succès
-    When the user clicks on chef de zone
+    When the user clicks on the Zone Manager section
     And the user clicks on ajoute button
 
     And the user clicks on information section
@@ -27,7 +27,7 @@ Feature: Gestion des Chefs de Zone
     And the user selects ville 3
     And the user enters adresse "123 Rue Principale"
     And the user enters GPS coordinates "36.8000, 10.1667"
-    And the user clicks on contact and details section
+    And the user selects the Contact and Details section
     And the user enters date debut contrat "2021-01-01"
     And the user enters date fin contrat "2023-01-01"
     And the user uploads contrat PDF

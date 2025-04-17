@@ -21,7 +21,7 @@ public class addDiscount {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void openLoginPage() {
+    public void page() {
         driver.get("http://localhost:4200/discount");
     }
 
@@ -47,21 +47,6 @@ public class addDiscount {
         WebElement listZoneManagers = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-discount/mat-card[2]/mat-card-content/div")));
         return listZoneManagers.isDisplayed();
     }
-/*
-    public String getErrorMessage() {
-        WebElement errorMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div/mat-snack-bar-container/div/div/div/div/simple-snack-bar/div")));
-        return errorMsg.getText();
-    }
-
-    public String getPageTitle() {
-        WebElement pageTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-update/mat-card-title")));
-        return pageTitle.getText();
-    }
-
-    public void photoSectionButton() {
-        WebElement Button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"mat-tab-label-1-0\"]")));
-        Button.click();
-    }*/
 // *********************** information Section ***********************
     public void enterSelectionMode(int index) {
         WebElement matSelect = wait.until(ExpectedConditions

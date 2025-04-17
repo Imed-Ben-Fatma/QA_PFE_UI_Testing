@@ -4,22 +4,21 @@ import base.TestBase;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.loginPage;
 import com.aventstack.extentreports.Status;
+import pages.zoneManager;
 
 
 public class addZoneManagerSteps extends TestBase {
 
-    private pages.addZoneManager page;
+    private zoneManager page;
 
     public addZoneManagerSteps(){
         // Initialize loginPage with the WebDriver managed by TestBase
-        this.page = new pages.addZoneManager(TestBase.getDriver());
+        this.page = new zoneManager(TestBase.getDriver());
     }
 
 
-    @When("the user clicks on chef de zone")
+    @When("the user clicks on the Zone Manager section")
     public void userEntersZoneManagerSection() {
         try {
             page.zoneManagerButton();
@@ -198,7 +197,7 @@ public class addZoneManagerSteps extends TestBase {
     }
 
     // Contact and Details Section
-    @When("the user clicks on contact and details section")
+    @When("the user selects the Contact and Details section")
     public void userClicksOnContactAndDetailsSection() {
         try {
             page.contactAndDetailesButton();

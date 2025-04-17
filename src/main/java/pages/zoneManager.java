@@ -1,28 +1,28 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
 
-public class addZoneManager {
+public class zoneManager {
 
     private WebDriver driver;
     private WebDriverWait wait;
 
     // Constructor to initialize WebDriver and WebDriverWait
-    public addZoneManager(WebDriver driver) {
+    public zoneManager(WebDriver driver) {
         if (driver == null) throw new IllegalArgumentException("Driver cannot be null");
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void openLoginPage() {
+    public void page() {
         driver.get("http://localhost:4200/zone-manager/new");
     }
 
@@ -34,6 +34,11 @@ public class addZoneManager {
 
     public void zoneManagerButton() {
         WebElement Button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav/div/div/ng-scrollbar/div/mat-nav-list/jhi-app-nav-item[2]/a")));
+        Button.click();
+    }
+
+    public void updateZoneManagerButton() {
+        WebElement Button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager/mat-card[2]/mat-card-content/div/table/tbody/tr[1]/td[9]/a[2]")));
         Button.click();
     }
 
@@ -63,13 +68,6 @@ public class addZoneManager {
         Button.click();
     }
 
-   /* public void enterSatus(int index) {
-        WebElement dropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-update/mat-card/mat-card-content/form/mat-tab-group/div/mat-tab-body[2]/div/div/div[1]/div/mat-form-field/div[1]/div/div[2]/mat-select")));
-        Select selectObject = new Select(dropDown);
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(200));
-        selectObject.selectByIndex(index);
-    }
-*/
     public void enterSatus(int index) {
         WebElement matSelect = wait.until(ExpectedConditions
                 .elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-update/mat-card/mat-card-content/form/mat-tab-group/div/mat-tab-body[2]/div/div/div[1]/div/mat-form-field/div[1]/div/div[2]/mat-select")));
@@ -156,12 +154,25 @@ public class addZoneManager {
 
     public void enterDateDebutContrat(String date) {
         WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-update/mat-card/mat-card-content/form/mat-tab-group/div/mat-tab-body[4]/div/div/div/div[1]/mat-form-field/div[1]/div/div[2]/input")));
+        // Efface le champ existant
+        input.clear();
+        // Sélectionne tout et efface au cas où clear ne fonctionnerait pas complètement
+        input.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        input.sendKeys(Keys.DELETE);
+        // Envoie la nouvelle date
         input.sendKeys(date);
     }
 
-    public void enterDateFinContrat(String gps) {
+    public void enterDateFinContrat(String date) {
         WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-update/mat-card/mat-card-content/form/mat-tab-group/div/mat-tab-body[4]/div/div/div/div[2]/mat-form-field/div[1]/div/div[2]/input")));
-        input.sendKeys(gps);
+        // Efface le champ existant
+        input.clear();
+        // Sélectionne tout et efface au cas où clear ne fonctionnerait pas complètement
+        input.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        input.sendKeys(Keys.DELETE);
+        // Envoie la nouvelle date
+        input.sendKeys(date);
+
     }
 
     public void enterContratPDF() {
@@ -177,11 +188,6 @@ public class addZoneManager {
         Button.click();
     }
 
-  /*  public String getSuccessMessage() {
-        WebElement yourAccountTextElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[3]/div/div/mat-snack-bar-container/div/div/div/div/simple-snack-bar/div[1]")));
-        return yourAccountTextElement.getText();
-    }
-*/
     public String getSuccessMessage() {
         // Utilisation d'un locator relatif qui cible le composant du snack-bar
         By successMessageLocator = By.xpath("//mat-snack-bar-container//simple-snack-bar//div[contains(text(),'a été ajouté avec succès')]");
@@ -189,6 +195,12 @@ public class addZoneManager {
         return successMessageElement.getText();
     }
 
+    public String getSuccessUpdateMessage() {
+        // Utilisation d'un locator relatif qui cible le composant du snack-bar
+        By successMessageLocator = By.xpath("//mat-snack-bar-container//simple-snack-bar//div[contains(text(),'Le chef de zone a été mis à jour avec succès.')]");
+        WebElement successMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(successMessageLocator));
+        return successMessageElement.getText();
+    }
 
 
 
