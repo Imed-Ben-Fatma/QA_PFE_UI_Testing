@@ -5,15 +5,16 @@ import com.aventstack.extentreports.Status;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+import pages.packQRcode;
 
 
 public class addPackSteps extends TestBase {
 
-    private pages.addPackQRcode page;
+    private packQRcode page;
 
     public addPackSteps(){
         // Initialize loginPage with the WebDriver managed by TestBase
-        this.page = new pages.addPackQRcode(TestBase.getDriver());
+        this.page = new packQRcode(TestBase.getDriver());
     }
 
     @When("the user clicks on the Packs section button")

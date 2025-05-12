@@ -1,7 +1,7 @@
-Feature: Gestion des Chefs de Zone
-  Afin de garantir une gestion efficace des chefs de zone
-  En tant qu'administrateur
-  Je souhaite ajouter ou annuler l'ajout d'un chef de zone dans le système
+Feature: Zone Manager Management
+  In order to ensure effective management of zone managers
+  As an administrator
+  I want to add or cancel the addition of a zone manager in the system
 
   Background:
     Given the user is on the login page
@@ -10,28 +10,58 @@ Feature: Gestion des Chefs de Zone
     And clicks on the login button
     Then the user should see a successful login message
 
-  Scenario: Ajouter un chef de zone avec succès
-    When the user clicks on the Zone Manager section
-    And the user clicks on ajoute button
+  @ValidCredentials
+  Scenario Outline: Successfully add a zone manager
+    When the user navigates to the Zone Manager section
+    And clicks the "Add" button
 
-    And the user clicks on information section
-    And the user selects status 1
-    And the user enters nom "Dupont"
-    And the user enters prenom "Jean"
-    And the user enters date de naissance "01/01/1996"
-    And the user selects sexe 1
-    And the user enters phone number "012345678"
-    And the user enters email "jexh5gaont@example.com"
-    And the user clicks on address section
-    And the user selects governorate 2
-    And the user selects ville 3
-    And the user enters adresse "123 Rue Principale"
-    And the user enters GPS coordinates "36.8000, 10.1667"
-    And the user selects the Contact and Details section
-    And the user enters date debut contrat "2021-01-01"
-    And the user enters date fin contrat "2023-01-01"
-    And the user uploads contrat PDF
-    And the user clicks on enregistrer button
-    Then le chef de zone est ajouté avec succès
+    And selects the "Information" section
+    And selects status 1
+    And enters the last name "Dupont"
+    And enters the first name "Jean"
+    And enters the date of birth "01/01/1996"
+    And selects gender 1
+    And enters the phone number "012345678"
+    And enters the email "<email>"
+    And proceeds to the "Address" section
+    And selects governorate 2
+    And selects city 3
+    And enters the address "123 Main Street"
+    And inputs GPS coordinates "36.8000, 10.1667"
+    And moves to the "Contact and Details" section
+    And sets the contract start date to "2021-01-01"
+    And sets the contract end date to "2023-01-01"
+    And uploads the contract PDF file
+    And clicks the "Save" button
+    Then the zone manager is successfully added
+    Examples:
+      | email                |
+      | exemple4@exemple.com |
 
+  @InvalidCredentials
+  Scenario Outline: Failed to add zone manager - Email already in use
+    When the user navigates to the Zone Manager section
+    And clicks the "Add" button
 
+    And selects the "Information" section
+    And selects status 1
+    And enters the last name "Dupont"
+    And enters the first name "Jean"
+    And enters the date of birth "01/01/1996"
+    And selects gender 1
+    And enters the phone number "012345678"
+    And enters the email "<email>"
+    And proceeds to the "Address" section
+    And selects governorate 2
+    And selects city 3
+    And enters the address "123 Main Street"
+    And inputs GPS coordinates "36.8000, 10.1667"
+    And moves to the "Contact and Details" section
+    And sets the contract start date to "2021-01-01"
+    And sets the contract end date to "2023-01-01"
+    And uploads the contract PDF file
+    And clicks the "Save" button
+    Then an error message "Email already exists" is displayed, and the zone manager is not added
+    Examples:
+      | email                |
+      | exemple2@exemple.com |

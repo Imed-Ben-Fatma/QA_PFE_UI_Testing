@@ -7,15 +7,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 
-public class addPackQRcode {
+public class packQRcode {
 
     private WebDriver driver;
     private WebDriverWait wait;
 
     // Constructor to initialize WebDriver and WebDriverWait
-    public addPackQRcode(WebDriver driver) {
+    public packQRcode(WebDriver driver) {
         if (driver == null) throw new IllegalArgumentException("Driver cannot be null");
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -30,7 +29,7 @@ public class addPackQRcode {
     }
 
     public void addPackButton() {
-        WebElement Button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-pack/mat-card[1]/mat-card-content/div/div[2]/button[1]")));
+        WebElement Button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-pack/mat-card[1]/mat-card-content/div/div[3]/button[1]")));
         Button.click();
     }
 
