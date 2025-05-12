@@ -9,13 +9,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class addDiscount {
+public class discount {
 
     private WebDriver driver;
     private WebDriverWait wait;
 
     // Constructor to initialize WebDriver and WebDriverWait
-    public addDiscount(WebDriver driver) {
+    public discount(WebDriver driver) {
         if (driver == null) throw new IllegalArgumentException("Driver cannot be null");
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -50,7 +50,7 @@ public class addDiscount {
 // *********************** information Section ***********************
     public void enterSelectionMode(int index) {
         WebElement matSelect = wait.until(ExpectedConditions
-                .elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-discount-update/mat-card/mat-card-content/form/div[1]/mat-form-field/div[1]/div/div[2]/mat-select")));
+                .elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-discount-update/mat-card/mat-card-content/form/div[1]/div/mat-form-field/div[1]/div/div[2]/mat-select")));
 
         selectIndex(matSelect,index);
     }

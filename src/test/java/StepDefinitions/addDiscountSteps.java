@@ -5,15 +5,16 @@ import com.aventstack.extentreports.Status;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+import pages.discount;
 
 
 public class addDiscountSteps extends TestBase {
 
-    private pages.addDiscount page;
+    private discount page;
 
     public addDiscountSteps(){
         // Initialize loginPage with the WebDriver managed by TestBase
-        this.page = new pages.addDiscount(TestBase.getDriver());
+        this.page = new discount(TestBase.getDriver());
     }
 
     @When("the user clicks on Remise&Offer")

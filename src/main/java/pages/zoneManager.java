@@ -48,11 +48,6 @@ public class zoneManager {
         return listZoneManagers.isDisplayed();
     }
 
-    public String getErrorMessage() {
-        WebElement errorMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div/mat-snack-bar-container/div/div/div/div/simple-snack-bar/div")));
-        return errorMsg.getText();
-    }
-
     public String getPageTitle() {
         WebElement pageTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-update/mat-card-title")));
         return pageTitle.getText();
@@ -175,7 +170,11 @@ public class zoneManager {
 
     }
 
-    public void enterContratPDF() {
+    public void enterContratPDF(String fileName) {
+        WebElement input = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-update/mat-card/mat-card-content/form/mat-tab-group/div/mat-tab-body[4]/div/div/ngx-dropzone/input")));
+        String projectPath = System.getProperty("user.dir");
+        String fullPath = projectPath + "\\files\\pdf\\" + fileName;
+        input.sendKeys(fullPath);
     }
 
 //---------------------------------------------------------------------
@@ -198,6 +197,13 @@ public class zoneManager {
     public String getSuccessUpdateMessage() {
         // Utilisation d'un locator relatif qui cible le composant du snack-bar
         By successMessageLocator = By.xpath("//mat-snack-bar-container//simple-snack-bar//div[contains(text(),'Le chef de zone a été mis à jour avec succès.')]");
+        WebElement successMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(successMessageLocator));
+        return successMessageElement.getText();
+    }
+
+    public String getFiledMessage() {
+        // Utilisation d'un locator relatif qui cible le composant du snack-bar
+        By successMessageLocator = By.xpath("//mat-snack-bar-container//simple-snack-bar//div[contains(text(),'Cette adresse email est déjà utilisée.')]");
         WebElement successMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(successMessageLocator));
         return successMessageElement.getText();
     }

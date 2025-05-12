@@ -10,7 +10,7 @@ import pages.zoneManager;
 
 public class addZoneManagerSteps extends TestBase {
 
-    private zoneManager page;
+    private final zoneManager page;
 
     public addZoneManagerSteps(){
         // Initialize loginPage with the WebDriver managed by TestBase
@@ -18,7 +18,7 @@ public class addZoneManagerSteps extends TestBase {
     }
 
 
-    @When("the user clicks on the Zone Manager section")
+    @When("the user navigates to the Zone Manager section")
     public void userEntersZoneManagerSection() {
         try {
             page.zoneManagerButton();
@@ -29,7 +29,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user clicks on ajoute button")
+    @When("clicks the \"Add\" button")
     public void userClickOnAjouteButton() {
         try {
             page.addZoneManagerButton();
@@ -52,7 +52,7 @@ public class addZoneManagerSteps extends TestBase {
     }
 */
     // Information Section
-    @When("the user clicks on information section")
+    @When("selects the \"Information\" section")
     public void userClicksOnInformationSection() {
         try {
             page.InformationSectionButton();
@@ -63,7 +63,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user selects status {int}")
+    @When("selects status {int}")
     public void userSelectsStatus(int index) {
         try {
             page.enterSatus(index);
@@ -74,7 +74,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user enters nom {string}")
+    @When("enters the last name {string}")
     public void userEntersNom(String nom) {
         try {
             page.enterNom(nom);
@@ -85,7 +85,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user enters prenom {string}")
+    @When("enters the first name {string}")
     public void userEntersPrenom(String prenom) {
         try {
             page.enterPrenom(prenom);
@@ -96,7 +96,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user enters date de naissance {string}")
+    @When("enters the date of birth {string}")
     public void userEntersDateNaissance(String date) {
         try {
             page.enterDateNaissance(date);
@@ -107,7 +107,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user selects sexe {int}")
+    @When("selects gender {int}")
     public void userSelectsSexe(int index) {
         try {
             page.enterSexe(index);
@@ -118,7 +118,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user enters phone number {string}")
+    @When("enters the phone number {string}")
     public void userEntersPhoneNumber(String phoneNumber) {
         try {
             page.enterPhoneNumber(phoneNumber);
@@ -129,7 +129,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user enters email {string}")
+    @When("enters the email {string}")
     public void userEntersEmail(String email) {
         try {
             page.enterEmail(email);
@@ -141,7 +141,7 @@ public class addZoneManagerSteps extends TestBase {
     }
 
     // Address Section
-    @When("the user clicks on address section")
+    @When("proceeds to the \"Address\" section")
     public void userClicksOnAddressSection() {
         try {
             page.adressButton();
@@ -152,7 +152,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user selects governorate {int}")
+    @When("selects governorate {int}")
     public void userSelectsGovernorate(int index) {
         try {
             page.enterGovernorate(index);
@@ -163,7 +163,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user selects ville {int}")
+    @When("selects city {int}")
     public void userSelectsVille(int index) {
         try {
             page.enterVille(index);
@@ -174,7 +174,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user enters adresse {string}")
+    @When("enters the address {string}")
     public void userEntersAdresse(String adresse) {
         try {
             page.enterAdresse(adresse);
@@ -185,7 +185,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user enters GPS coordinates {string}")
+    @When("inputs GPS coordinates {string}")
     public void userEntersGPS(String gps) {
         try {
             page.enterGPS(gps);
@@ -197,7 +197,7 @@ public class addZoneManagerSteps extends TestBase {
     }
 
     // Contact and Details Section
-    @When("the user selects the Contact and Details section")
+    @When("moves to the \"Contact and Details\" section")
     public void userClicksOnContactAndDetailsSection() {
         try {
             page.contactAndDetailesButton();
@@ -208,7 +208,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user enters date debut contrat {string}")
+    @When("sets the contract start date to {string}")
     public void userEntersDateDebutContrat(String date) {
         try {
             page.enterDateDebutContrat(date);
@@ -219,7 +219,7 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user enters date fin contrat {string}")
+    @When("sets the contract end date to {string}")
     public void userEntersDateFinContrat(String date) {
         try {
             page.enterDateFinContrat(date);
@@ -230,18 +230,18 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("the user uploads contrat PDF")
+    @When("uploads the contract PDF file")
     public void userUploadsContratPDF() {
         try {
-            page.enterContratPDF();
+            page.enterContratPDF("Contrat1.pdf");
             Hooks.getExtentTest().log(Status.PASS, "User uploads contrat PDF");
-            Thread.sleep(200);
+            Thread.sleep(1000);
         } catch (Exception e) {
             addFailure("Failed to upload contrat PDF: "+e.getMessage());
         }
     }
 
-    @When("the user clicks on enregistrer button")
+    @When("clicks the \"Save\" button")
     public void userClicksOnEnregistrerButton() {
         try {
             page.enregistrerButton();
@@ -277,14 +277,27 @@ public class addZoneManagerSteps extends TestBase {
 
     }*/
 
-    @Then("le chef de zone est ajouté avec succès")
-    public void userSuccessMessage() {
+    @Then("the zone manager is successfully added")
+    public void successMessage() {
         try {
             // L'attente est gérée dans getSuccessMessage(), le sleep n'est donc pas indispensable
             String successMessage = page.getSuccessMessage();
             Assertions.assertTrue(successMessage.contains("Le chef de zone a été ajouté avec succès."),
                     "Expected success message not found. Actual message: " + successMessage);
             Hooks.getExtentTest().log(Status.PASS, "Zone manager created successfully: " + successMessage);
+        } catch (Throwable t) {
+            addFailure("Success message not displayed or incorrect / " + t.getMessage());
+        }
+    }
+
+    @Then("an error message \"Email already exists\" is displayed, and the zone manager is not added")
+    public void filedMessage() {
+        try {
+            // L'attente est gérée dans getSuccessMessage(), le sleep n'est donc pas indispensable
+            String filedMessage = page.getFiledMessage();
+            Assertions.assertTrue(filedMessage.contains("Cette adresse email est déjà utilisée."),
+                    "Expected success message not found. Actual message: " + filedMessage);
+            Hooks.getExtentTest().log(Status.PASS, "failed to create Zone manager: "+filedMessage);
         } catch (Throwable t) {
             addFailure("Success message not displayed or incorrect / " + t.getMessage());
         }

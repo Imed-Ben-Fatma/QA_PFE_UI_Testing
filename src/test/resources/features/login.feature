@@ -9,8 +9,8 @@ Feature: User Login
     And clicks on the login button
     Then the user should see a successful login message
     Examples:
-      | email                      | password     |
-      | admin   | admin   |
+      | email               | password     |
+      | admin               | admin        |
 
 
   @InvalidCredentials
@@ -22,5 +22,7 @@ Feature: User Login
     Then the user should see a login failure message
 
     Examples:
-      | email                     | password   |
-      | admin   | admin1 |
+      | email               | password     |
+      | admin               | password     |
+      | email@email.com     | admin        |
+

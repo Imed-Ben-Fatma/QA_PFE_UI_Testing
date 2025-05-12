@@ -9,14 +9,21 @@ Feature: Zone Manager Management
     And clicks on the login button
     Then the user should see a successful login message
 
-
+  @ValidCredentials
   Scenario: update a zone manager contract
-    When the user clicks on the Zone Manager section
+    When the user navigates to the Zone Manager section
     And the user clicks on the update button for the zone manager
-    And the user selects the Contact and Details section
+    And moves to the "Contact and Details" section
     And the user enters the new contract start date "2005-01-01" for the zone manager
     And the user enters the new contract end date "2029-01-01" for the zone manager
-    And the user clicks on enregistrer button
+    And clicks the "Save" button
     Then the zone manager's contract is successfully updated
-
-
+  @InvalidCredentials
+  Scenario: update a zone manager contract fail
+    When the user navigates to the Zone Manager section
+    And the user clicks on the update button for the zone manager
+    And moves to the "Contact and Details" section
+    And the user enters the new contract start date "2005" for the zone manager
+    And the user enters the new contract end date "2029-01-01" for the zone manager
+    And clicks the "Save" button
+    Then the zone manager's contract is successfully updated
