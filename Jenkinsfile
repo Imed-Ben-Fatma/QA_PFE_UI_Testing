@@ -1,21 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
+
         stage('Test Cucumber') {
             steps {
-                sh 'mvn clean test -Dcucumber.options="--plugin json:target/cucumber-reports/report.json"'
+                sh 'mvn clean test '
             }
-            post {
-                always {
-                    junit '**/target/surefire-reports/*.xml'
-                    cucumber 'target/cucumber-reports/report.json'
-                }
-            }
+
         }
     }
     post {
