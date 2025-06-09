@@ -1,11 +1,13 @@
 pipeline {
     agent any
+    // Déclenchement automatique chaque dimanche à 00h00
     triggers {
-        cron('0 0 * * 0') // Chaque dimanche à 00:00
+        cron('0 0 * * 0')
     }
     stages {
         stage('Test Cucumber') {
             steps {
+                // Exécute les tests automatisés
                 bat 'mvn clean test -Dtest=CucumberRunner'
             }
         }
@@ -13,6 +15,7 @@ pipeline {
     post {
         always {
             script {
+                // Publie le rapport ExtentReports dans Jenkins
                 publishHTML(target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
@@ -22,7 +25,10 @@ pipeline {
                     reportName: 'Extent Test Report'
                 ])
             }
+            // Nettoie le workspace Jenkins
             cleanWs()
         }
     }
 }
+
+
