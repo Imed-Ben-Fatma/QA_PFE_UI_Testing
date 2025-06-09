@@ -3,7 +3,13 @@ pipeline {
     stages {
         stage('Test Cucumber') {
             steps {
-                sh './mvnw clean test'
+                script {
+                    if (isUnix()) {
+                        sh './mvnw clean test'
+                    } else {
+                        bat 'mvnw clean test'
+                    }
+                }
             }
         }
     }
