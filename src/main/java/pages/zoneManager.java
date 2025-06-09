@@ -1,9 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -53,10 +50,30 @@ public class zoneManager {
         return pageTitle.getText();
     }
 
+
+    // *********************** photos Section ***********************
     public void photoSectionButton() {
-        WebElement Button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"mat-tab-label-1-0\"]")));
+        WebElement Button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-update/mat-card/mat-card-content/form/mat-tab-group/mat-tab-header/div[2]/div/div/div[1]")));
         Button.click();
     }
+
+    public void uploadProfilePhoto(String fileName) {
+        List<WebElement> inputs = driver.findElements(By.cssSelector("input[type='file'][accept='image/*']"));
+        WebElement input = inputs.get(0);
+        String projectPath = System.getProperty("user.dir");
+        String fullPath = projectPath + "\\files\\images\\profile\\" + fileName;
+        input.sendKeys(fullPath );  // C’est ici qu’on injecte le chemin du fichier
+    }
+
+    public void enterCoverPhoto(String fileName) {
+        List<WebElement> inputs = driver.findElements(By.cssSelector("input[type='file'][accept='image/*']"));
+        WebElement input = inputs.get(1);
+        String projectPath = System.getProperty("user.dir");
+        String fullPath = projectPath + "\\files\\images\\cover\\" + fileName;
+        input.sendKeys(fullPath);
+    }
+
+
 // *********************** information Section ***********************
     public void InformationSectionButton() {
         WebElement Button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-update/mat-card/mat-card-content/form/mat-tab-group/mat-tab-header/div[2]/div/div/div[2]")));
@@ -207,7 +224,11 @@ public class zoneManager {
         WebElement successMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(successMessageLocator));
         return successMessageElement.getText();
     }
-
+    public boolean unsuccessCobdition() {
+        // Utilisation d'un locator relatif qui cible le composant du snack-bar
+        WebElement fieldRed = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-update/mat-card/mat-card-content/form/mat-tab-group/div/mat-tab-body[4]/div/div/div/div[1]/mat-form-field/div[1][contains(@class,'mdc-text-field--invalid')]")));
+        return fieldRed.isDisplayed();
+    }
 
 
     public void selectIndex(WebElement matSelect,int index) {
@@ -224,4 +245,46 @@ public class zoneManager {
         // Cliquer sur l’option correspondant à l’index
         allOptions.get(index).click();
     }
+
+    public String getTitleOfListZoneManagers() {
+        WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager/mat-card-title")));
+        return title.getText();
+    }
+
+    public void detaillesFirstZoneManagerButton() {
+        WebElement Button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager/mat-card[2]/mat-card-content/div/table/tbody/tr[1]/td[9]/a[1]")));
+        Button.click();
+    }
+
+    public String getTitleDetailsZoneManagersPage() {
+        WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-detail/mat-card[1]/mat-card-content/div/div[1]/h4")));
+        return title.getText();
+    }
+
+    public String getTitleBasicInformationSection() {
+        WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-detail/mat-card[2]/mat-card-content/mat-card-content/mat-tab-group/div/mat-tab-body[1]/div/mat-card-content/div/h3[1]")));
+        return title.getText();
+    }
+
+    public String getTitleAdressSection() {
+        WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-detail/mat-card[2]/mat-card-content/mat-card-content/mat-tab-group/div/mat-tab-body[2]/div/mat-card-content/h3")));
+        return title.getText();
+    }
+
+    public String getTitleTeamSection() {
+        WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-detail/mat-card[2]/mat-card-content/mat-card-content/mat-tab-group/div/mat-tab-body[3]/div/mat-card-content/mat-tab-group/mat-tab-header/div[2]/div/div/div[1]/span[2]/span")));
+        return title.getText();
+    }
+
+    public void adressSectionButton() {
+        WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-detail/mat-card[2]/mat-card-content/mat-card-content/mat-tab-group/mat-tab-header/div[2]/div/div/div[2]")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+    }
+
+    public void teamSectionButton() {
+        WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-zone-manager-detail/mat-card[2]/mat-card-content/mat-card-content/mat-tab-group/mat-tab-header/div[2]/div/div/div[3]")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+    }
+
+
 }

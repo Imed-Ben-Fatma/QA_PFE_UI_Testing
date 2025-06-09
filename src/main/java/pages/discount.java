@@ -99,9 +99,12 @@ public class discount {
         selectIndex(matSelect,index);
     }
 
-    public void enterStartDate(String date) {
+    public void enterStartDate(String date) throws InterruptedException {
         WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-discount-update/mat-card/mat-card-content/form/div[6]/div[1]/mat-form-field/div[1]/div/div[2]/input")));
+        input.clear();
+        Thread.sleep(200);
         input.sendKeys(date);
+
     }
 
     public void enterEndDate(String date) {
@@ -129,6 +132,12 @@ public class discount {
         By successMessageLocator = By.xpath("//mat-snack-bar-container//simple-snack-bar//div[contains(text(),'La remise a été ajoutée avec succès.')]");
         WebElement successMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(successMessageLocator));
         return successMessageElement.getText();
+    }
+
+    public boolean unsuccessCobdition() {
+        // Utilisation d'un locator relatif qui cible le composant du snack-bar
+        WebElement fieldRed = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-discount-update/mat-card/mat-card-content/form/div[6]/div[1]/mat-form-field/div[contains(@class,'mdc-text-field--invalid')]")));
+        return fieldRed.isDisplayed();
     }
 
 

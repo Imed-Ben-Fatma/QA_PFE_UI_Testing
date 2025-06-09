@@ -1,5 +1,5 @@
 @LoginSuccess
-Feature: User Login
+Feature: Login
 
   @ValidCredentials
   Scenario Outline: Successful login
@@ -11,6 +11,7 @@ Feature: User Login
     Examples:
       | email               | password     |
       | admin               | admin        |
+      | admin1              | admin        |
 
 
   @InvalidCredentials

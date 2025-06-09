@@ -40,8 +40,8 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    /* Photo Section
-    @When("the user clicks on photo section")
+    // Photo Section
+    @When("selects the \"Photos\" section")
     public void userClicksOnPhotoSection() {
         try {
             page.photoSectionButton();
@@ -50,7 +50,29 @@ public class addZoneManagerSteps extends TestBase {
             addFailure("Failed to click on photo section");
         }
     }
-*/
+
+    @When("upload the profile photo of zone manager {string}")
+    public void userUploadProfilePhoto(String profilePhoto) {
+        try {
+           // page.enterProfilePhoto();
+            page.uploadProfilePhoto(profilePhoto);
+            Hooks.getExtentTest().log(Status.PASS, "User upload profile photo");
+        } catch (Exception e) {
+            addFailure("Failed to upload profile photo: "+ e.getMessage() );
+        }
+    }
+
+    @When("upload the cover photo of zone manager {string}")
+    public void userUploadCoverPhoto(String coverPhoto) {
+        try {
+            page.enterCoverPhoto(coverPhoto);
+            Hooks.getExtentTest().log(Status.PASS, "User upload cover photo");
+        } catch (Exception e) {
+            addFailure("Failed to upload cover photo");
+        }
+    }
+
+
     // Information Section
     @When("selects the \"Information\" section")
     public void userClicksOnInformationSection() {
@@ -230,11 +252,11 @@ public class addZoneManagerSteps extends TestBase {
         }
     }
 
-    @When("uploads the contract PDF file")
-    public void userUploadsContratPDF() {
+    @When("upload the contract PDF file {string}")
+    public void userUploadsContratPDF(String fileName) {
         try {
-            page.enterContratPDF("Contrat1.pdf");
-            Hooks.getExtentTest().log(Status.PASS, "User uploads contrat PDF");
+            page.enterContratPDF(fileName);
+            Hooks.getExtentTest().log(Status.PASS, "User upload contrat PDF");
             Thread.sleep(1000);
         } catch (Exception e) {
             addFailure("Failed to upload contrat PDF: "+e.getMessage());
@@ -262,25 +284,12 @@ public class addZoneManagerSteps extends TestBase {
             addFailure("Failed to click on annuler button: "+e.getMessage());
         }
     }
-  /*  @Then("le chef de zone est ajouté avec succès")
-    public void userSeesLoginFailureMessage() {
-
-        try {
-            Thread.sleep(800);
-            String failureMessage = page.getSuccessMessage();
-            Assertions.assertTrue(failureMessage.contains("Le chef de zone a été ajouté avec succès."),
-                    "Expected failure message not found");
-            Hooks.getExtentTest().log(Status.PASS, "Zone manager created ");
-        } catch (Throwable t) {
-            addFailure("created message not displayed or incorrect / "+t.getMessage());
-        }
-
-    }*/
 
     @Then("the zone manager is successfully added")
     public void successMessage() {
         try {
             // L'attente est gérée dans getSuccessMessage(), le sleep n'est donc pas indispensable
+            Thread.sleep(200);
             String successMessage = page.getSuccessMessage();
             Assertions.assertTrue(successMessage.contains("Le chef de zone a été ajouté avec succès."),
                     "Expected success message not found. Actual message: " + successMessage);

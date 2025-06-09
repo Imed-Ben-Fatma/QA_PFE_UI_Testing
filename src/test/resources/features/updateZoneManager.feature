@@ -1,6 +1,7 @@
 Feature: Zone Manager Management
   In order to ensure effective management of zone managers
-  As an administrator. I want to update zone manager in the system
+  As an administrator
+  I want to edit a zone manager
 
   Background:
     Given the user is on the login page
@@ -14,16 +15,15 @@ Feature: Zone Manager Management
     When the user navigates to the Zone Manager section
     And the user clicks on the update button for the zone manager
     And moves to the "Contact and Details" section
-    And the user enters the new contract start date "2005-01-01" for the zone manager
-    And the user enters the new contract end date "2029-01-01" for the zone manager
+    And the user enters the new contract start date "2025-05-03" for the zone manager
+    And the user enters the new contract end date "2029-06-29" for the zone manager
     And clicks the "Save" button
     Then the zone manager's contract is successfully updated
   @InvalidCredentials
-  Scenario: update a zone manager contract fail
+  Scenario: Failed to update a zone manager - start date invalid
     When the user navigates to the Zone Manager section
     And the user clicks on the update button for the zone manager
     And moves to the "Contact and Details" section
-    And the user enters the new contract start date "2005" for the zone manager
+    And the user enters the new contract start date "uiy" for the zone manager
     And the user enters the new contract end date "2029-01-01" for the zone manager
-    And clicks the "Save" button
-    Then the zone manager's contract is successfully updated
+    Then the Zone manager should be updated unsuccessfully

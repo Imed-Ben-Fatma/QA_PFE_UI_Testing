@@ -73,7 +73,7 @@ public class addDiscountSteps extends TestBase {
         }
     }
 
-    @When("the user enters Titre de remise {string}")
+    @When("the user enters Title Discount {string}")
     public void userEntersDiscountTitle(String titre) {
         try {
             page.enterTitle(titre);
@@ -84,7 +84,7 @@ public class addDiscountSteps extends TestBase {
         }
     }
 
-    @When("the user enters Taux de remise {string}")
+    @When("the user enters Discount rate {string}")
     public void userEntersTauxDiscount(String taux) {
         try {
             page.enterTauxDiscount(taux);
@@ -95,7 +95,7 @@ public class addDiscountSteps extends TestBase {
         }
     }
 
-    @When("the user enters Description {string}")
+    @When("the user enters Description of discount {string}")
     public void userEntersDescription(String description) {
         try {
             page.enterDescription(description);
@@ -106,7 +106,7 @@ public class addDiscountSteps extends TestBase {
         }
     }
 
-    @When("the user selects Type de remise {int}")
+    @When("the user selects Type of discount {int}")
     public void userSelectsDiscountType(int index) {
         try {
             page.enterDiscountType(index);
@@ -117,7 +117,7 @@ public class addDiscountSteps extends TestBase {
         }
     }
 
-    @When("the user enters date debut {string}")
+    @When("the user enters start date discount {string}")
     public void userEntersStartDate(String date) {
         try {
             page.enterStartDate(date);
@@ -127,7 +127,7 @@ public class addDiscountSteps extends TestBase {
             addFailure("Failed to enter phone number: "+e.getMessage());
         }
     }
-    @When("the user clicks on enregistrer remise button")
+    @When("the user clicks on save discount button")
     public void userClicksOnAddbutton() {
         try {
             page.enregistrerButton();
@@ -138,7 +138,7 @@ public class addDiscountSteps extends TestBase {
         }
     }
 
-    @Then("le remise est ajouté avec succès")
+    @Then("the discount should be added successfully")
     public void successMessage() {
         try {
             // L'attente est gérée dans getSuccessMessage(), le sleep n'est donc pas indispensable
@@ -148,6 +148,19 @@ public class addDiscountSteps extends TestBase {
             Hooks.getExtentTest().log(Status.PASS, "Zone manager created successfully: " + successMessage);
         } catch (Throwable t) {
             addFailure("Success message not displayed or incorrect / " + t.getMessage());
+        }
+    }
+
+    @Then("the discount should be added unsuccessfully")
+    public void unsuccessMessage() {
+        try {
+            // L'attente est gérée dans getSuccessMessage(), le sleep n'est donc pas indispensable
+            boolean unsuccessCondition = page.unsuccessCobdition();
+            Assertions.assertTrue(unsuccessCondition,
+                    "Expected unsuccess cindition not found.");
+            Hooks.getExtentTest().log(Status.PASS, "unsuccessfully created discount " );
+        } catch (Throwable t) {
+            addFailure("unsuccess condition message not displayed or incorrect / " + t.getMessage());
         }
     }
 

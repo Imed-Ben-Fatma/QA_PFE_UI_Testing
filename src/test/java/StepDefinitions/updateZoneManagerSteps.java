@@ -64,6 +64,18 @@ public class updateZoneManagerSteps extends TestBase {
         }
     }
 
+    @Then("the Zone manager should be updated unsuccessfully")
+    public void unsuccessMessage() {
+        try {
+            // L'attente est gérée dans getSuccessMessage(), le sleep n'est donc pas indispensable
+            boolean unsuccessCondition = page.unsuccessCobdition();
+            Assertions.assertTrue(unsuccessCondition,
+                    "Expected Failed cindition not found.");
+            Hooks.getExtentTest().log(Status.PASS, "unsuccessfully updated zone manager " );
+        } catch (Throwable t) {
+            addFailure("Failed condition message not displayed or incorrect / " + t.getMessage());
+        }
+    }
 
     // Utility method to log failures and capture screenshots
     private void addFailure(String message) {
