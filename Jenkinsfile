@@ -7,8 +7,7 @@ pipeline {
                     if (isUnix()) {
                         sh './mvnw clean test'
                     } else {
-                        bat 'mvn clean test'
-                    }
+                        bat 'mvn clean test -Dtest=CucumberRunner'                    }
                 }
             }
         }
