@@ -7,7 +7,7 @@ pipeline {
                     if (isUnix()) {
                         sh './mvnw clean test'
                     } else {
-                        bat 'mvnw clean test'
+                        bat 'mvn clean test'
                     }
                 }
             }
