@@ -1,11 +1,12 @@
 pipeline {
     agent any
+    triggers {
+        cron('0 0 * * 0') // Chaque dimanche à 00:00
+    }
     stages {
         stage('Test Cucumber') {
             steps {
-                script {
-                       bat 'mvn clean test -Dtest=CucumberRunner'
-                }
+                bat 'mvn clean test -Dtest=CucumberRunner'
             }
         }
     }
