@@ -101,10 +101,9 @@ public class discount {
 
     public void enterStartDate(String date) throws InterruptedException {
         WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-discount-update/mat-card/mat-card-content/form/div[6]/div[1]/mat-form-field/div[1]/div/div[2]/input")));
-        input.clear();
-        Thread.sleep(200);
+        Thread.sleep(500);
         input.sendKeys(date);
-
+        Thread.sleep(500);
     }
 
     public void enterEndDate(String date) {

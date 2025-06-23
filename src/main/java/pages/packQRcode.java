@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class packQRcode {
 
@@ -40,21 +41,21 @@ public class packQRcode {
 // *********************** information Section ***********************
     public void enterNumberPacks(String NumberOfPacks) {
         WebElement input = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-pack-update/mat-card/mat-card-content/div/div/form/div[1]/mat-form-field/div[1]/div/div[2]/input")));
+                .visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-pack-update/mat-card/mat-card-content/div/div/form/div[2]/mat-form-field/div[1]/div/div[2]/input")));
         input.clear();
         input.sendKeys(NumberOfPacks);
     }
 
     public void enterNumberQRcodeOfPacks(String NumberOfQrCode) {
         WebElement input = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-pack-update/mat-card/mat-card-content/div/div/form/div[2]/mat-form-field/div[1]/div/div[2]/input")));
+                .visibilityOfElementLocated(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-pack-update/mat-card/mat-card-content/div/div/form/div[3]/mat-form-field/div[1]/div/div[2]/input")));
         input.clear();
         input.sendKeys(NumberOfQrCode);
     }
 
 //---------------------------------------------------------------------
     public void enregistrerButton() {
-        WebElement Button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-pack-update/mat-card/mat-card-content/div/div/form/div[3]/button[1]")));
+        WebElement Button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-pack-update/mat-card/mat-card-content/div/div/form/div[4]/button")));
         Button.click();
     }
     public void annulerButton() {
@@ -67,5 +68,25 @@ public class packQRcode {
         By successMessageLocator = By.xpath("//mat-snack-bar-container//simple-snack-bar//div[contains(text(),'Le pack a été ajouté avec succès.')]");
         WebElement successMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(successMessageLocator));
         return successMessageElement.getText();
+    }
+    public void selectCommercialAssocie(int index) {
+        WebElement matSelect = wait.until(ExpectedConditions
+                .elementToBeClickable(By.xpath("/html/body/jhi-app/jhi-main/div/jhi-app-full/span/mat-sidenav-container/mat-sidenav-content/div/main/jhi-pack-update/mat-card/mat-card-content/div/div/form/div[1]/mat-form-field/div[1]/div/div[2]/mat-select")));
+
+        selectIndex(matSelect,index);
+    }
+    public void selectIndex(WebElement matSelect,int index) {
+        matSelect.click();
+
+        // Attendre l’apparition des options
+        List<WebElement> allOptions = wait.until(ExpectedConditions
+                .visibilityOfAllElementsLocatedBy(By.cssSelector("mat-option")));
+
+        if (index < 0 || index >= allOptions.size()) {
+            throw new IllegalArgumentException("Index invalide : " + index);
+        }
+
+        // Cliquer sur l’option correspondant à l’index
+        allOptions.get(index).click();
     }
 }

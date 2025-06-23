@@ -64,6 +64,17 @@ public class addPackSteps extends TestBase {
         }
     }
 
+    @When("the user selects Commercial Associe {int}")
+    public void userSelectsCommercialAssocie(int index) {
+        try {
+            page.selectCommercialAssocie(index);
+            Hooks.getExtentTest().log(Status.PASS, "User selects Commercial Associe with index: " + index);
+            Thread.sleep(200);
+        } catch (Exception e) {
+            addFailure("Failed to select Commercial Associe: "+e.getMessage());
+        }
+    }
+
     @When("the user clicks on the \"Save Packs\" button")
     public void userClicksOnAddbutton() {
         try {

@@ -9,9 +9,9 @@ Feature: Login
     And clicks on the login button
     Then the user should see a successful login message
     Examples:
-      | email               | password     |
-      | admin               | admin        |
-      | admin1              | admin        |
+      | email                | password     |
+      | admin                | admin        |
+      | commercial1@email.com| 123456        |
 
 
   @InvalidCredentials

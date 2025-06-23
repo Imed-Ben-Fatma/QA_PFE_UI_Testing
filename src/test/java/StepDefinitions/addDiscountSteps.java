@@ -124,7 +124,7 @@ public class addDiscountSteps extends TestBase {
             Hooks.getExtentTest().log(Status.PASS, "User enters date de debut: " + date);
             Thread.sleep(200);
         } catch (Exception e) {
-            addFailure("Failed to enter phone number: "+e.getMessage());
+            addFailure("Failed to enters date de debut "+e.getMessage());
         }
     }
     @When("the user clicks on save discount button")
@@ -151,7 +151,7 @@ public class addDiscountSteps extends TestBase {
         }
     }
 
-    @Then("the discount should be added unsuccessfully")
+    @Then("the discount should be added Failed")
     public void unsuccessMessage() {
         try {
             // L'attente est gérée dans getSuccessMessage(), le sleep n'est donc pas indispensable

@@ -34,7 +34,7 @@ Feature: Add Zone Manager
     Then the zone manager is successfully added
     Examples:
       | email                     |
-      | imad.benfatma10@gmail.com |
+      | zonemanager23@email.com |
 
   @InvalidCredentials
   Scenario Outline: Failed to add zone manager - Email invalid
@@ -62,4 +62,4 @@ Feature: Add Zone Manager
     Then an error message "Email already exists" is displayed, and the zone manager is not added
     Examples:
       | email                |
-      | imad.benfatma98@gmail.com  |
+      | zonemanager20@email.com  |

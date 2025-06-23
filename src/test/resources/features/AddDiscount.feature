@@ -34,4 +34,4 @@ Feature: Add Discount
     And the user selects Type of discount 0
     And the user enters start date discount "2025-07-2025"
     And the user clicks on save discount button
-    Then the discount should be added unsuccessfully
+    Then the discount should be added Failed
