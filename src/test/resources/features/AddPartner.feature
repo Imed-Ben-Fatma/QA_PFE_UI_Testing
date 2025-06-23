@@ -30,7 +30,7 @@ Feature: Add Partner
     And enters the responsible first name of partner "jon"
     And enters the responsible last name of partner "jon"
     And enters the responsible phone number of partner "99999999"
-    And enters the email of partner "partner23@partner.com"
+    And enters the email of partner "partner50@partner.com"
     And selects the "Coordonnees" section of partner
     And enters the Website of partner "Website.com"
     And enters the facebook of partner "facebook.com"
